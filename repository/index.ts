@@ -1,0 +1,1 @@
+export { createServiceRepository } from "./service";
