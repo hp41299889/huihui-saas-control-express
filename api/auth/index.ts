@@ -1,7 +1,12 @@
 import { apiError } from "@/util/api";
-import type { AuthApi, PostSignin, AuthDetail } from "./interface";
+import type {
+  AuthApi,
+  PostSignin,
+  PostSigninInput,
+  AuthDetail,
+} from "./interface";
 
-const postSignin = async (a: AuthDetail): PostSignin => {
+const postSignin: PostSignin = async (a: PostSigninInput) => {
   try {
     const authRes = auth(a);
     if (!authRes) {

@@ -1,4 +1,5 @@
 import express, { Express, Router } from "express";
+import "./util/module-alias";
 
 import { appConfig } from "./config";
 import { router } from "./route";

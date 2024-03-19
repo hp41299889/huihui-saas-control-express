@@ -4,19 +4,19 @@ import { apiResponse, resHandler } from "@/util/api";
 import { createServiceApi } from "@/api";
 import type { ServiceController } from "./interface";
 import type { Controller } from "../interface";
-import type { ServiceCreateInput } from "@/repository/service/interface";
+import type { PostInput } from "@/api/service/interface";
 
 const serviceApi = createServiceApi();
 
-const postService: Controller = async (
+const post: Controller = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const { body } = req;
-    const s: ServiceCreateInput = body;
-    const r = await serviceApi.postService(s);
+    const p: PostInput = body;
+    const r = await serviceApi.post(p);
     return resHandler(
       res,
       apiResponse({ httpCode: 201, errorCode: 0, data: r })
@@ -26,13 +26,13 @@ const postService: Controller = async (
   }
 };
 
-const getService: Controller = async (
+const get: Controller = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const r = await serviceApi.getService();
+    const r = await serviceApi.get();
     return resHandler(
       res,
       apiResponse({ httpCode: 200, errorCode: 0, data: r })
@@ -44,8 +44,8 @@ const getService: Controller = async (
 
 export const createServiceController = (): ServiceController => {
   const serviceController: ServiceController = {
-    postService,
-    getService,
+    post,
+    get,
   };
 
   return serviceController;

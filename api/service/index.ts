@@ -1,19 +1,26 @@
-import { Prisma } from "@prisma/client";
-
 import { createServiceRepository } from "@/repository";
-import type { ServiceApi, GetService, PostService } from "./interface";
+import type { ServiceApi, Post, PostInput, Get, Patch } from "./interface";
 
 const serviceRepo = createServiceRepository();
 
-const postService = async (s: Prisma.ServiceCreateInput): PostService => {
+export const createServiceApi = (): ServiceApi => {
+  const serviceSerivce: ServiceApi = {
+    post,
+    get,
+  };
+
+  return serviceSerivce;
+};
+
+const post: Post = async (p: PostInput) => {
   try {
-    return await serviceRepo.createOne(s);
+    return await serviceRepo.createOne(p);
   } catch (error) {
     throw error;
   }
 };
 
-const getService = async (): GetService => {
+const get: Get = async () => {
   try {
     return await serviceRepo.readAll();
   } catch (error) {
@@ -21,11 +28,4 @@ const getService = async (): GetService => {
   }
 };
 
-export const createServiceApi = (): ServiceApi => {
-  const serviceSerivce: ServiceApi = {
-    postService,
-    getService,
-  };
-
-  return serviceSerivce;
-};
+const patch: Patch = async;

@@ -8,5 +8,5 @@ export const serviceRouter = Router();
 
 serviceRouter
   .route("/service")
-  .post(serviceController.postService)
-  .get(serviceController.getService);
+  .post(serviceController.post)
+  .get(serviceController.get);

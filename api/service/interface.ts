@@ -1,9 +1,22 @@
-import { Prisma, Service } from "@prisma/client";
+import {
+  CreateOne,
+  CreateOneInput,
+  ReadAll,
+  UpdateOne,
+  UpdateOneInput,
+  DeleteOne,
+} from "@/repository/service/interface";
 
 export interface ServiceApi {
-  postService: (s: Prisma.ServiceCreateInput) => PostService;
-  getService: () => GetService;
+  post: Post;
+  get: Get;
+  patch: Patch;
+  delete: Delete;
 }
 
-export type PostService = Promise<Service>;
-export type GetService = Promise<Service[]>;
+export type Post = CreateOne;
+export type PostInput = CreateOneInput;
+export type Get = ReadAll;
+export type Patch = UpdateOne;
+export type PatchInput = UpdateOneInput;
+export type Delete = DeleteOne;

@@ -1,8 +1,10 @@
 export interface AuthApi {
-  postSignin: (a: AuthDetail) => PostSignin;
+  postSignin: PostSignin;
 }
 
-export type PostSignin = Promise<any>;
+export type PostSignin = (p: PostSigninInput) => Promise<string>;
+
+export type PostSigninInput = AuthDetail;
 
 export interface AuthDetail {
   username: string;
